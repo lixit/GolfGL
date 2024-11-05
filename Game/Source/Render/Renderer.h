@@ -14,22 +14,16 @@ namespace Render
     class Renderer
     {
     public:
-        Renderer(const Renderer &) = delete;
-        Renderer(Renderer &&)      = delete;
-        void operator=(const Renderer &) = delete;
+        Renderer(GLFWwindow *m_glfwWindow);
 
-        bool Init();
         void Update();
-        bool IsRunning();
 
-        GLFWwindow *GetWindow();
-
-        Renderer() = default;
         ~Renderer();
+
+        GLFWwindow *m_glfwWindow;
 
     private:
         float lastTime;
-        Window::Window m_Window;
 
 #ifdef _DEBUG
         Window::DebugWindow m_DebugWindow;
@@ -41,6 +35,5 @@ namespace Render
         inline static float m_clearColorRgba[4] = {0.5f, 0.5f, 0.5f, 1.f};
 
         inline void m_clearColor();
-        inline void m_UpdateWindows();
     };
 } // namespace Render

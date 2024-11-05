@@ -12,7 +12,7 @@ namespace Window
     class DebugWindow
     {
     public:
-        bool Init(EntMan* entityManager = nullptr);
+        bool Init(EntMan* entityManager = nullptr, GLFWwindow * glfwWindow = nullptr);
         bool Update();
 
         void Destroy();
@@ -23,6 +23,7 @@ namespace Window
     private:
 #ifdef _DEBUG
         EntMan* m_EntityManager;
+        GLFWwindow *m_glfwWindow;
         void m_DrawGFXSettings() const;
         void m_DrawCameraMenu()  const;
         void m_DrawLightMenu()   const;

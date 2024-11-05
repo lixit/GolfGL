@@ -13,9 +13,10 @@
 #include <Entities/Terrain/Terrain.h>
 
 /* Initialize after setting up native opengl viewport */
-bool Window::DebugWindow::Init(EntMan *entityManager)
+bool Window::DebugWindow::Init(EntMan* entityManager, GLFWwindow * glfwWindow)
 {
     m_EntityManager = entityManager;
+    m_glfwWindow = glfwWindow;
 
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -25,7 +26,7 @@ bool Window::DebugWindow::Init(EntMan *entityManager)
     ImGui::StyleColorsDark();
 
     // Setup Platform/Renderer backends
-    bool retval = ImGui_ImplGlfw_InitForOpenGL(Window::GetGlfwWindow(), true);
+    bool retval = ImGui_ImplGlfw_InitForOpenGL(m_glfwWindow, true);
     return retval && ImGui_ImplOpenGL3_Init(WindowData::glslVersion);
 }
 
@@ -163,12 +164,12 @@ void Window::DebugWindow::m_DrawGFXSettings() const
     {
         if (ImGui::MenuItem("1280x720"))
         {
-            glfwSetWindowSize(Window::GetGlfwWindow(), 1280, 720);
+            glfwSetWindowSize(m_glfwWindow, 1280, 720);
             glViewport(0, 0, 1280, 720);
         }
         if (ImGui::MenuItem("1920x1080"))
         {
-            glfwSetWindowSize(Window::GetGlfwWindow(), 1920, 1080);
+            glfwSetWindowSize(m_glfwWindow, 1920, 1080);
             glViewport(0, 0, 1920, 1080);
         }
 
