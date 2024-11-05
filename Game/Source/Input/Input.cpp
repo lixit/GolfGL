@@ -7,7 +7,7 @@ bool Input::Init(GLFWwindow *window)
     m_Window = window;
 
 #ifdef _DEBUG
-    glfwSetInputMode(m_Window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+    // glfwSetInputMode(m_Window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 #else
     glfwSetInputMode(m_Window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 #endif //_DEBUG
@@ -15,6 +15,7 @@ bool Input::Init(GLFWwindow *window)
     glfwSetKeyCallback(m_Window, keyCallback);
     glfwSetCursorPosCallback(m_Window, mouseCallback);
     glfwSetScrollCallback(m_Window, scrollCallback);
+    glfwSetMouseButtonCallback(m_Window, mouseButtonCallback);
 
     return true;
 }
@@ -27,11 +28,6 @@ using WWindow = Window::Window;
 void Input::ProcessInput()
 {
     glfwPollEvents();
-
-    if (KEY_PRESSED(GLFW_KEY_ESCAPE))
-    {
-        glfwSetWindowShouldClose(m_Window, 1);
-    }
 
     float currentFrame = static_cast<float>(glfwGetTime());
     deltaTime          = currentFrame - lastFrame;
@@ -65,12 +61,18 @@ void Input::keyCallback(GLFWwindow *window, int key, int scancode, int action, i
 {
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
     {
-        glfwSetWindowShouldClose(window, 1);
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
     }
 }
 
 void Input::mouseCallback(GLFWwindow *window, double xpos, double ypos)
 {
+    // if not captured mouse, do no process mouse movement
+    if (glfwGetInputMode(window, GLFW_CURSOR) != GLFW_CURSOR_DISABLED)
+    {
+        return;
+    }
+
 #ifdef _DEBUG
     if (KEY_PRESSED(GLFW_KEY_LEFT_CONTROL))
     {
@@ -101,4 +103,12 @@ void Input::mouseCallback(GLFWwindow *window, double xpos, double ypos)
 void Input::scrollCallback(GLFWwindow *window, double xoffset, double yoffset)
 {
     CAMERA.ProcessMouseScroll(static_cast<float>(yoffset));
+}
+
+void Input::mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
+{
+    if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+    {
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    }
 }

@@ -14,6 +14,7 @@ public:
     inline static void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mod);
     inline static void mouseCallback(GLFWwindow *window, double xpos, double ypos);
     inline static void scrollCallback(GLFWwindow *window, double xoffset, double yoffset);
+    inline static void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
 
 private:
     inline static GLFWwindow *m_Window = nullptr;
