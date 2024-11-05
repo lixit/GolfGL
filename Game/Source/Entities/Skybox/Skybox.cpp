@@ -75,7 +75,7 @@ unsigned Entities::Skybox::m_LoadCubemap() const
 void Entities::Skybox::m_SetPV() const
 {
     shader.setMat4("PV",
-                   projection * glm::mat4{   
+                   projection() * glm::mat4{   
                        view[0][0], view[0][1], view[0][2], 0.f, 
                        view[1][0], view[1][1], view[1][2], 0.f,
                        view[2][0], view[2][1], view[2][2], 0.f, 

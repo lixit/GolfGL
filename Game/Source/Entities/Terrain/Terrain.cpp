@@ -43,7 +43,7 @@ namespace Entities
     {
         shader.ActivateShader();
 
-        shader.setMat4("PV", projection*view);
+        shader.setMat4("PV", projection()*view);
         
         LIGHT.SetAllLights(shader);
         
