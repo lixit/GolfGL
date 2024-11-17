@@ -10,13 +10,10 @@ namespace Window
     class Window
     {
     public:
-
-        static GLFWwindow *GetGlfwWindow();
-
         Window() = default;
 
-        static void FrameBufferResizeCallback(GLFWwindow *glfwWindow, int width, int height);
-
+        static GLFWwindow *GetGlfwWindow();
+        
         inline static GLFWwindow *m_glfwWindow = nullptr;
     };
 } // namespace Window

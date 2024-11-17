@@ -21,6 +21,17 @@ bool Window::DebugWindow::Init(EntMan* entityManager, GLFWwindow * glfwWindow)
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
+    ImGuiIO& io = ImGui::GetIO();
+    int fbWidth, fbHeight;
+    int winWidth, winHeight;
+    glfwGetFramebufferSize(m_glfwWindow, &fbWidth, &fbHeight);
+    glfwGetWindowSize(m_glfwWindow, &winWidth, &winHeight);
+    float dpiScaleX = (float)fbWidth / (float)winWidth;
+    float dpiScaleY = (float)fbHeight / (float)winHeight;
+    dpiScaleX = 0.5f;
+    dpiScaleY = 0.5f;
+    io.FontGlobalScale = 1.0f / dpiScaleX;
+    io.DisplayFramebufferScale = ImVec2(dpiScaleX, dpiScaleY);
 
     // Setup Dear ImGui style
     ImGui::StyleColorsDark();
@@ -171,6 +182,18 @@ void Window::DebugWindow::m_DrawGFXSettings() const
         {
             glfwSetWindowSize(m_glfwWindow, 1920, 1080);
             glViewport(0, 0, 1920, 1080);
+        }
+
+        if (ImGui::MenuItem("2560x1440"))
+        {
+            glfwSetWindowSize(m_glfwWindow, 2560, 1440);
+            glViewport(0, 0, 2560, 1440);
+        }
+
+        if (ImGui::MenuItem("3840x2160"))
+        {
+            glfwSetWindowSize(m_glfwWindow, 3840, 2160);
+            glViewport(0, 0, 3840, 2160);
         }
 
         ImGui::EndMenu();
