@@ -27,7 +27,6 @@ using WWindow = Window::Window;
 
 void Input::ProcessInput()
 {
-    glfwPollEvents();
 
     float currentFrame = static_cast<float>(glfwGetTime());
     deltaTime          = currentFrame - lastFrame;
@@ -73,14 +72,6 @@ void Input::mouseCallback(GLFWwindow *window, double xpos, double ypos)
         return;
     }
 
-#ifdef _DEBUG
-    if (KEY_PRESSED(GLFW_KEY_LEFT_CONTROL))
-    {
-        Input::firstMouse = true;
-        return;
-    }
-#endif // _DEBUG
-
     float x_pos = static_cast<float>(xpos);
     float y_pos = static_cast<float>(ypos);
 
@@ -110,5 +101,6 @@ void Input::mouseButtonCallback(GLFWwindow* window, int button, int action, int 
     if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
     {
         glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+        firstMouse = true;
     }
 }
