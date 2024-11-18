@@ -231,7 +231,7 @@ void Window::DebugWindow::m_DrawCameraMenu() const
 
     auto& pos = CAMERA.GetCameraPos();
     ImGui::Text("Position: (%.3f, %.3f, %.3f)", pos.x, pos.y, pos.z);
-    ImGui::SliderFloat("Movement speed", &CAMERA.MovementSpeed, 0.f, 50.f);
+    ImGui::SliderFloat("Movement speed", &CAMERA.MovementSpeed, 0.f, 100.f);
     ImGui::SliderFloat("Sensitivity", &CAMERA.MouseSensitivity, 0.f, 1.f);
 
     ImGui::EndGroup();
@@ -246,7 +246,7 @@ void Window::DebugWindow::m_DrawBallMenu() const
     ImGui::Indent(10.f);
     ImGui::BeginGroup();
     auto* ball = static_cast<Entities::Ball*>(m_EntityManager->GetEntity("ball"));
-    static bool attach = true;
+    static bool attach = false;
     
     ImGui::Text("Position: %s", glm::to_string(ball->position).c_str()+4);
     if( ImGui::InputFloat3("Set position", &Entities::ballDefault::position[0]) )
@@ -271,7 +271,9 @@ void Window::DebugWindow::m_DrawBallMenu() const
         float s = Entities::ballDefault::scale;
         ball->m_scaleMatrix = glm::scale(Math::I4, glm::vec3{s,s,s});
         ball->m_UpdateModelMatrix();
-    }    
+    }
+
+    ImGui::SliderFloat("shootSpeed", &Entities::ballDefault::shootSpeed, 0.f, 200.f);
 
     ImGui::EndGroup();
     ImGui::Indent(-10.f);

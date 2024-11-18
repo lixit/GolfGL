@@ -77,6 +77,10 @@ namespace Entities
     {
         if (m_speed != glm::vec3{0.f})
         {
+            if (m_ShootEvent())
+            {
+                m_speed = ballDefault::shootSpeed * glm::normalize(CAMERA.GetCameraFront());
+            }
             auto rot = m_NormalOnVec(m_speed);            
             m_angle = (delta / 3.14f)* glm::length(m_speed);            
 

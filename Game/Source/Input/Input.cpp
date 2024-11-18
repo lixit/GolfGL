@@ -31,28 +31,38 @@ void Input::ProcessInput()
     float currentFrame = static_cast<float>(glfwGetTime());
     deltaTime          = currentFrame - lastFrame;
     lastFrame          = currentFrame;
-    CAMERA.SetCameraSpeed(deltaTime);
 
     // W
     if (KEY_PRESSED(GLFW_KEY_W))
     {
-        CAMERA.LookUp();
+        CAMERA.Look(Direction::FORWARD, deltaTime);
     }
     // S
     if (KEY_PRESSED(GLFW_KEY_S))
     {
-        CAMERA.LookDown();
+        CAMERA.Look(Direction::BACKWARD, deltaTime);
     }
     // D
     if (KEY_PRESSED(GLFW_KEY_D))
     {
-        CAMERA.LookRight();
+        CAMERA.Look(Direction::RIGHT, deltaTime);
     }
     // A
     if (KEY_PRESSED(GLFW_KEY_A))
     {
-        CAMERA.LookLeft();
+        CAMERA.Look(Direction::LEFT, deltaTime);
     }
+    // Q go down
+    if (KEY_PRESSED(GLFW_KEY_Q))
+    {
+        CAMERA.Look(Direction::DOWN, deltaTime);
+    }
+    // E go up
+    if (KEY_PRESSED(GLFW_KEY_E))
+    {
+        CAMERA.Look(Direction::UP, deltaTime);
+    }
+
 }
 
 

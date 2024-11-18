@@ -19,7 +19,7 @@ namespace Entities
         inline static glm::vec3 speed{0.f};        
         inline static float scale = 1.f;
         inline static float frictionFactor = -0.2f;
-        inline static float shootSpeed     = 10.f;
+        inline static float shootSpeed     = 100.f;
         inline static float timeout        = 0.2f;
         inline static float angle          = 5.f;
     };

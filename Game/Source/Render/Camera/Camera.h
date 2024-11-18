@@ -47,7 +47,7 @@ private:
 
 	inline static float Yaw = -90.f;
 	inline static float Pitch = 0.f;		
-	inline static float MovementSpeed = 10.0f;
+	inline static float MovementSpeed = 50.0f;
 	inline static float MouseSensitivity = 0.1f;
 	inline static float Zoom = 45.f;
 
