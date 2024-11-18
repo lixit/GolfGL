@@ -13,8 +13,8 @@ namespace Entities
 #endif
         friend class Ball;
 
-        inline static constexpr char* modelDir  = "Resources/Objects/golfBall";
-        inline static constexpr char* modelPath = "Resources/Objects/golfBall/golfBall.obj";
+        inline static constexpr const char* modelDir  = "Resources/Objects/golfBall";
+        inline static constexpr const char* modelPath = "Resources/Objects/golfBall/golfBall.obj";
         inline static glm::vec3 position{14.f, -1.85f, 3.5f};
         inline static glm::vec3 speed{0.f};        
         inline static float scale = 1.f;

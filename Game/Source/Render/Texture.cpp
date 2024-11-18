@@ -67,7 +67,7 @@ GLint Render::Texture::GetFormat( int nChannels )
 
 void Render::Texture::BindTextureImage( unsigned id, RawImage& rawimage, GLenum target, bool genmm )
 {
-    auto [width, height, nChannels, data] = std::move( rawimage.Get() );
+    auto [width, height, nChannels, data] = rawimage.Get();
     
     auto iForm = GetFormat( nChannels );
 

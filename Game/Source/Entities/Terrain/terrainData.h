@@ -19,10 +19,10 @@ namespace Entities
     /* Terrain global vars and helper functions */
     class terrainData
     {
-        inline static constexpr char* terrainDir    = "Resources/Textures/terrain";        
-        inline static constexpr char* heightMapPath = "Resources/Textures/terrain/height_map.jpg";
-        inline static constexpr char* grassDir      = "Resources/Textures/terrain/grass";        
-        inline static constexpr char* mudDir        = "Resources/Textures/terrain/mud";
+        inline static constexpr const char* terrainDir    = "Resources/Textures/terrain";        
+        inline static constexpr const char* heightMapPath = "Resources/Textures/terrain/height_map.jpg";
+        inline static constexpr const char* grassDir      = "Resources/Textures/terrain/grass";        
+        inline static constexpr const char* mudDir        = "Resources/Textures/terrain/mud";
         
 
         /* Tranforming pixel interval [0, 255] to [-25, 25] */
