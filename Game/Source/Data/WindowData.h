@@ -4,8 +4,8 @@ struct WindowData
 {
     inline static int width = 1920;
     inline static int height = 1080;
-    inline static constexpr char *windowTitle = "GolfGL";
-    inline static constexpr char *glslVersion = "#version 330";
+    inline static constexpr const char *windowTitle = "GolfGL";
+    inline static constexpr const char *glslVersion = "#version 330";
     inline static bool fxaa = true;
     inline static bool vsync = true;
 

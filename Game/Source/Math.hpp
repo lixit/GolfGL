@@ -51,8 +51,8 @@ namespace Math
         Image newImage(n, std::vector<float>(m, 0.f));
         for (int i = 0; i < n; i++)
             for (int j = 0; j < m; j++)
-                for (int h = i; h < i + filter.size(); h++)
-                    for (int w = j; w < j + filter[0].size(); w++)
+                for (unsigned h = i; h < i + filter.size(); h++)
+                    for (unsigned w = j; w < j + filter[0].size(); w++)
                         newImage[i][j] += filter[h - i][w - j] * im[h][w];
 
         return newImage;

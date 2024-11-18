@@ -20,7 +20,7 @@ namespace Entities
 
         // diffuse texture is loaded in parent class
         for(auto& tex : m_model.GetTextures())
-            LOG_TRACE("Texture {}, {}, type {}", tex.GetID(), tex.GetName(), tex.GetType());
+            LOG_TRACE("Texture {}, {}", tex.GetID(), tex.GetName());
 
         shader.ActivateShader();
         setUniformPVM();

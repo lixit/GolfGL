@@ -16,6 +16,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin/${CMAKE_PROJECT_NAME}
 if(UNIX)  
   cmake_policy(SET CMP0072 NEW)
   find_package(Freetype REQUIRED)
+  find_package(fmt REQUIRED)
   message(STATUS "Found Freetype in ${FREETYPE_INCLUDE_DIR_ft2build}")
   
   set(GLAD_LIBRARY "${CMAKE_SOURCE_DIR}/External/GLAD/lib/unix/libglad.a")
@@ -59,7 +60,7 @@ else() # UNIX
   find_package(X11 REQUIRED)  
   
   set(LIBS ${GLAD_LIBRARY} ${GLFW3_LIBRARY} X11 Xrandr Xinerama Xi Xxf86vm Xcursor GL dl 
-      pthread freetype ${ASSIMP_LIBRARY} ${IMGUI_LIBRARY})
+      pthread freetype fmt::fmt ${ASSIMP_LIBRARY} ${IMGUI_LIBRARY})
   set (CMAKE_CXX_LINK_EXECUTABLE "${CMAKE_CXX_LINK_EXECUTABLE} -ldl")
 endif(WIN32)
 
