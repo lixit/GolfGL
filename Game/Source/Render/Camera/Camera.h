@@ -6,6 +6,16 @@
     namespace Window { class DebugWindow; }
 #endif
 
+enum class Direction
+{
+	FORWARD,
+	BACKWARD,
+	LEFT,
+	RIGHT,
+	UP,
+	DOWN
+};
+
 class Camera
 {
 public:
@@ -15,12 +25,8 @@ public:
 	static void Init();
 	inline static Camera& GetCamera() { return *ms_Camera; }
 
-	void LookUp();
-	void LookDown();
-	void LookRight();
-	void LookLeft();
+	void Look(Direction direction, float dt);
     glm::mat4 LookAt();
-	void SetCameraSpeed(float dt);
 
 	const glm::vec3& GetCameraPos();
 	float GetCameraZoom();
@@ -38,18 +44,17 @@ private:
 	inline static glm::vec3 cameraPos {11.4f, -1.7f, 25.f};
 	inline static glm::vec3 cameraFront { 0.f, 0.f, -1.f };
 	inline static glm::vec3 cameraUp{ 0.f, 1.f, 0.f };
-	inline static float cameraSpeed = 0.5f;
 
 	inline static float Yaw = -90.f;
 	inline static float Pitch = 0.f;		
-	inline static float MovementSpeed = 4.5f;
+	inline static float MovementSpeed = 10.0f;
 	inline static float MouseSensitivity = 0.1f;
 	inline static float Zoom = 45.f;
 
 	/* Bounds */
 	inline static const float constrainPitchBound = 89.f;
 	inline static const float zoomLowerBound = 1.f;
-	inline static const float zoomUpperBound = 45.f;
+	inline static const float zoomUpperBound = 89.f;
 	
 	Camera() = default;
 

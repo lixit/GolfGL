@@ -7,24 +7,33 @@ void Camera::Init()
     ms_Camera = std::move( std::unique_ptr<Camera>() );
 }
 
-void Camera::LookUp()
+void Camera::Look(Direction direction, float dt)
 {
-    cameraPos += cameraSpeed * cameraFront;
-}
 
-void Camera::LookDown()
-{
-    cameraPos -= cameraSpeed * cameraFront;
-}
-
-void Camera::LookRight()
-{
-    cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
-}
-
-void Camera::LookLeft()
-{
-    cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+    float distance = MovementSpeed * dt;
+    switch (direction)
+    {
+    case Direction::FORWARD:
+        cameraPos += distance * cameraFront;
+        break;
+    case Direction::BACKWARD:
+        cameraPos -= distance * cameraFront;
+        break;
+    case Direction::LEFT:
+        cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * distance;
+        break;
+    case Direction::RIGHT:
+        cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * distance;
+        break;
+    case Direction::UP:
+        cameraPos += distance * cameraUp;
+        break;
+    case Direction::DOWN:
+        cameraPos -= distance * cameraUp;
+        break;
+    default:
+        break;
+    }
 }
 
 glm::mat4 Camera::LookAt()
@@ -32,10 +41,6 @@ glm::mat4 Camera::LookAt()
     return glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 }
 
-void Camera::SetCameraSpeed(float dt)
-{
-    cameraSpeed = MovementSpeed * dt;
-}
 
 const glm::vec3& Camera::GetCameraPos()
 {
